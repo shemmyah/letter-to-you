@@ -5,6 +5,11 @@ use App\Http\Controllers\DedicationController;
 
 Route::get('/', [DedicationController::class, 'search'])->name('dedication.search');
 
+Route::get('/debug-dedications', function () {
+    return \App\Models\Dedication::count();
+});
+
+
 // Protected by secret code in URL
 Route::get('/admin/dedicate', [DedicationController::class, 'index']);
 Route::post('/send', [DedicationController::class, 'store'])->name('send.dedication');
