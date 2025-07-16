@@ -1,7 +1,7 @@
 <h1 align="center">💌 Letter To You</h1>
 
 <p align="center">
-A personal Laravel web app filled with love, letters, soft animations, and songs — dedicated to someone special.
+A personal Laravel web app filled with love, letters, soft animations, and songs, dedicated to someone special.
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@ A personal Laravel web app filled with love, letters, soft animations, and songs
 
 ## 💖 About the Project
 
-**Letter To You** is a heartfelt Laravel app where I write daily letters to my boyfriend while we're apart — each one wrapped in warmth, animations, and music that reminds me of him. It’s more than just text. It’s a growing digital memory of love and time.
+**Letter To You** is a heartfelt Laravel app where I write daily letters to my boyfriend while we're apart, each one wrapped in warmth, animations, and music that reminds me of him. It’s more than just text. It’s a growing digital memory of love and time.
 
 ---
 
