@@ -46,7 +46,7 @@ A personal Laravel web app filled with love, letters, soft animations, and songs
 
 ## 👤 Author
 
-**Shem Park**  
+**Shem de los Reyes**  
 💌 Built with love for: **My Boyfriend**  
 📅 Counting down until: **March 14 – White Day**  
 🐙 GitHub: [@shemmyah](https://github.com/shemmyah)  
