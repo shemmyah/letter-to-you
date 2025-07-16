@@ -8,7 +8,6 @@ A personal Laravel web app filled with love, letters, soft animations, and songs
 <img src="https://img.shields.io/badge/Laravel-10.x-red?logo=laravel" alt="Laravel Version">
 <img src="https://img.shields.io/badge/Built%20with-Love%20%26%20Laravel-pink" alt="Love & Laravel">
 <img src="https://img.shields.io/badge/Letters-With%20Music-blueviolet" alt="Letters with Music">
-<img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
 </p>
 
 ---
