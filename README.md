@@ -5,6 +5,12 @@ A personal Laravel web app filled with love, letters, soft animations, and songs
 </p>
 
 <p align="center">
+<a href="https://letter-to-you-main-jzdtz5.laravel.cloud/" target="_blank">
+  <strong>🌐 Check out the live homepage</strong>
+</a>
+</p>
+
+<p align="center">
 <img src="https://img.shields.io/badge/Laravel-10.x-red?logo=laravel" alt="Laravel Version">
 <img src="https://img.shields.io/badge/Built%20with-Love%20%26%20Laravel-pink" alt="Love & Laravel">
 <img src="https://img.shields.io/badge/Letters-With%20Music-blueviolet" alt="Letters with Music">
