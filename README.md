@@ -44,7 +44,6 @@ A personal Laravel web app filled with love, letters, soft animations, and songs
 - **Custom CSS Animations** – Subtle effects that match the mood of love
 - **JavaScript** – Dynamically plays a unique song for each letter  
 - **HTML5 `<audio>`** – Plays a different song with each letter  
-- **Gmail SMTP** *(optional)* – For sending letters via real email  
 - **MySQL / SQLite** – To store and manage all letters securely  
 - **Vite** – For compiling and bundling assets  
 
