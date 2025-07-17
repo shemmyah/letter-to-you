@@ -12,7 +12,6 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        {{-- If editing, show edit form --}}
         @if (isset($editDedication))
             <form action="{{ url('/admin/dedicate/update/' . $editDedication->id . '?code=mysecret') }}" method="POST">
                 @csrf
@@ -41,7 +40,7 @@
 
         <hr class="my-5">
 
-        {{-- List of all dedications --}}
+
         <h4 class="mb-3">📜 All Dedications</h4>
         @if ($dedications->count())
             <div class="list-group">

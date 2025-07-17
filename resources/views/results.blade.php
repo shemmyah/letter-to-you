@@ -69,10 +69,32 @@
                 transform: translateY(-10px);
             }
         }
+
+        /* Subtle sparkle shimmer */
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+
+            100% {
+                background-position: 200px 0;
+            }
+        }
+
+        .animate-pulse {
+            background-size: 400% 100%;
+            animation: shimmer 3s linear infinite;
+        }
     </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center px-4 pt-20 relative">
+    <!-- Floating Gallery Button (top-right) -->
+    <a href="{{ route('memories.index') }}"
+        class="fixed top-4 right-4 z-50 bg-white text-pink-600 border border-pink-300 font-semibold px-4 py-2 rounded-xl shadow-lg hover:bg-pink-100 transition-all text-[13px]">
+        📸 Gallery
+    </a>
+
     <!-- Music Toggle Button -->
     <button id="toggleMusicBtn"
         class="fixed bottom-4 right-4 z-50 bg-pink-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-pink-600 transition"
@@ -119,7 +141,24 @@
         <source src="/audios/i-will.mp3" type="audio/mpeg">
     </audio>
 
+    <div
+        class="fixed top-4 left-4 z-50 bg-white bg-opacity-90 rounded-xl p-3 shadow-lg text-left text-xs sm:text-sm max-w-[180px] border-2 border-pink-300 overflow-hidden">
+        <!-- Sparkle effect -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="animate-pulse opacity-20 bg-gradient-to-r from-pink-200 via-pink-100 to-pink-200 w-full h-full">
+            </div>
+        </div>
+
+        <!-- Cute Title with Heart -->
+        <h2 class="font-bold text-pink-600 flex items-center gap-1 text-sm">
+            <span class="animate-bounce">❤️</span> March 14, 2026
+        </h2>
+        <p id="countdown" class="text-pink-500 mt-1 text-xs font-medium"></p>
+    </div>
+
+
     <div class="max-w-2xl w-full text-center space-y-8 z-10 animate-fade-letter">
+
         <h1 class="text-4xl font-bold text-pink-700 mt-10">
             @if (request('recipient'))
                 Hi honey, here are your dedications 💌
@@ -174,6 +213,7 @@
 
                 <p class="mt-4 text-gray-700 italic leading-relaxed">"{{ $dedication->message }}"</p>
                 <p class="text-sm text-gray-500 mt-3">— {{ $dedication->sender ?? 'Anonymous' }}</p>
+
             </div>
         @endforeach
     </div>
@@ -202,6 +242,26 @@
         const modalSpotifyEmbed = document.getElementById('modalSpotifyEmbed');
         const audio = document.getElementById('bgMusic');
         const toggleBtn = document.getElementById('toggleMusicBtn');
+        const targetDate = new Date("March 14, 2026 00:00:00").getTime();
+        const countdownEl = document.getElementById("countdown");
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                countdownEl.innerHTML = "🎉 It's finally March 14!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML =
+                `${days}days ${hours}hours ${minutes}minutes ${seconds}s left till I see my baby`;
+        }, 1000);
 
         toggleBtn.addEventListener('click', () => {
             if (audio.paused) {
