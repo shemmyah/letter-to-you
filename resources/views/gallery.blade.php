@@ -130,7 +130,8 @@
 
     <!-- Content -->
     <div class="relative z-10 max-w-6xl mx-auto">
-        <h2 class="text-4xl font-extrabold text-pink-600 mb-10 text-center drop-shadow-lg">🌸 Our Memory Gallery</h2>
+        <h2 class="text-4xl font-extrabold text-pink-600  text-center drop-shadow-lg">🌸Our Memory Gallery🌸</h2>
+        <p class="text-[16px] font-extrabold text-pink-300 mb-10 drop-shadow-sm text-center">Posting random memory pics...</p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             @foreach ($photos as $photo)
