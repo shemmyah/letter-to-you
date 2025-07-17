@@ -176,7 +176,7 @@
         <form action="{{ route('dedication.search') }}" method="GET" class="mt-4 flex gap-2 justify-center">
             <input type="text" name="recipient"
                 class="w-full sm:w-2/3 px-4 py-2 rounded-xl border border-pink-300 focus:ring-2 focus:ring-pink-500 outline-none"
-                placeholder="Type your name..." required>
+                placeholder="Type today's word..." required>
             <button class="bg-pink-500 text-white px-4 py-2 rounded-xl hover:bg-pink-600 transition">Search</button>
         </form>
 
