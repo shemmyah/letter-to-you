@@ -9,8 +9,7 @@ Route::get('/debug-dedications', function () {
     return \App\Models\Dedication::count();
 });
 
-
-// Protected by secret code in URL
 Route::get('/admin/dedicate', [DedicationController::class, 'index']);
+Route::put('/admin/dedicate/update/{id}', [DedicationController::class, 'update']);
 Route::post('/send', [DedicationController::class, 'store'])->name('send.dedication');
 

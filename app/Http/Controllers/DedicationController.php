@@ -13,7 +13,14 @@ class DedicationController extends Controller
             abort(403, 'Unauthorized.');
         }
 
-        return view('dedicate');
+        $dedications = Dedication::latest()->get();
+        $editDedication = null;
+
+        if ($request->query('edit')) {
+            $editDedication = Dedication::find($request->query('edit'));
+        }
+
+        return view('dedicate', compact('dedications', 'editDedication'));
     }
 
     public function store(Request $request)
@@ -32,6 +39,25 @@ class DedicationController extends Controller
 
         return redirect('/admin/dedicate?code=mysecret')->with('success', 'Dedication sent!');
     }
+
+    public function update(Request $request, $id)
+    {
+        if ($request->query('code') !== 'mysecret') {
+            abort(403, 'Unauthorized.');
+        }
+
+        $request->validate([
+            'song_title' => 'required',
+            'message' => 'required',
+            'recipient' => 'required',
+        ]);
+
+        $dedication = Dedication::findOrFail($id);
+        $dedication->update($request->all());
+
+        return redirect('/admin/dedicate?code=mysecret')->with('success', 'Dedication updated!');
+    }
+
     public function search(Request $request)
     {
         $recipient = $request->input('recipient') ?? $request->input('to');
@@ -43,8 +69,4 @@ class DedicationController extends Controller
 
         return view('results', compact('dedications'));
     }
-
-
-
-
 }
