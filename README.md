@@ -4,11 +4,6 @@
 A personal Laravel web app filled with love, letters, soft animations, and songs, dedicated to someone special.
 </p>
 
-<p align="center">
-<a href="https://letter-to-you-main-jzdtz5.laravel.cloud/" target="_blank">
-  <strong>🌐 Check out the live homepage</strong>
-</a>
-</p>
 
 <p align="center">
 <img src="https://img.shields.io/badge/Laravel-10.x-red?logo=laravel" alt="Laravel Version">
