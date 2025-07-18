@@ -5,6 +5,8 @@
     <title>Memory Gallery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABuUlEQVQ4jZ3TTUhUURTG8d+ciHY2Bk1IEiJ2ZkJj0EiSNNsYuNlILGwlYWFi2/wG2Nbdt7ZopstgJZFjYWdiYgxHb1u+55zvnPOec9y6ZApLg0J9ZCzTZJb1nmEYT9TDtw7iV6WS7S8w3SntIPuE02nWGWS4T8zx7ivNPwQUkYX0CtNG4QcoU53iK14K+CRK1EDeBFlQkylYy3IRuNCEv8YUpQSiK5oNTrxCiV6QUiPQYpgWm8E3mXFYU+mSzpCtR4b3hF0sTZHr0cvw1P4XU1VGbtUCkqvKn+U0SHddTG+qVckGbttB30qvU0x0LuT6flNPR2VPL3j26P9zzLjN1zhuM2C3cOaVTu9bZZaLGlNuAtbTDPdGL7k5iKHPMFNVuNso0OnYUv2OJqHKX5Nk0l3e8AkYiAPRT9uAmSnNszXHkck00zJK+i/8Af6Z2fC2IB4NgAAAABJRU5ErkJggg==">
+
     <style>
         body {
             background-color: #fff1f2;

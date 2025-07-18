@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABuUlEQVQ4jZ3TTUhUURTG8d+ciHY2Bk1IEiJ2ZkJj0EiSNNsYuNlILGwlYWFi2/wG2Nbdt7ZopstgJZFjYWdiYgxHb1u+55zvnPOec9y6ZApLg0J9ZCzTZJb1nmEYT9TDtw7iV6WS7S8w3SntIPuE02nWGWS4T8zx7ivNPwQUkYX0CtNG4QcoU53iK14K+CRK1EDeBFlQkylYy3IRuNCEv8YUpQSiK5oNTrxCiV6QUiPQYpgWm8E3mXFYU+mSzpCtR4b3hF0sTZHr0cvw1P4XU1VGbtUCkqvKn+U0SHddTG+qVckGbttB30qvU0x0LuT6flNPR2VPL3j26P9zzLjN1zhuM2C3cOaVTu9bZZaLGlNuAtbTDPdGL7k5iKHPMFNVuNso0OnYUv2OJqHKX5Nk0l3e8AkYiAPRT9uAmSnNszXHkck00zJK+i/8Af6Z2fC2IB4NgAAAABJRU5ErkJggg==">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap"
         rel="stylesheet">
@@ -346,6 +349,68 @@
         }
 
         window.addEventListener('load', startConfetti);
+    </script>
+
+    <script>
+        const messages = [
+            "I miss you🌸",
+            "Thinking of you💕",
+            "I love you💖",
+            "Sending hugs🤗",
+            "Forever with you🌷",
+            "Can't wait to see you🥺",
+            "おれのほうがすき💕",
+            "あいたい🥺",
+            "あなたのことがだいすきだよ💖",
+            "ずっといっしょにいたい💌",
+            "だきしめたい🤗"
+        ];
+
+        document.addEventListener("click", function(e) {
+            const flowerImg = document.createElement("img");
+            flowerImg.src = "/images/me.png"; 
+            flowerImg.style.position = "absolute";
+            flowerImg.style.left = e.pageX + "px";
+            flowerImg.style.top = e.pageY + "px";
+            flowerImg.style.width = "40px";
+            flowerImg.style.height = "90px";
+            flowerImg.style.zIndex = "50";
+            flowerImg.style.pointerEvents = "none";
+            flowerImg.style.animation = "floatUp 3s ease-out forwards";
+
+            const message = document.createElement("div");
+            message.textContent = messages[Math.floor(Math.random() * messages.length)];
+            message.style.position = "absolute";
+            message.style.left = e.pageX + 40 + "px";
+            message.style.top = e.pageY + "px";
+            message.style.fontSize = "14px";
+            message.style.color = "#ec4899";
+            message.style.fontWeight = "600";
+            message.style.zIndex = "50";
+            message.style.pointerEvents = "none";
+            message.style.animation = "fadeUp 3s ease-out forwards";
+
+            document.body.appendChild(flowerImg);
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                flowerImg.remove();
+                message.remove();
+            }, 2000);
+        });
+
+        const style = document.createElement("style");
+        style.innerHTML = `
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        @keyframes fadeUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-80px); opacity: 0; }
+        }
+    `;
+        document.head.appendChild(style);
     </script>
 
 </body>
