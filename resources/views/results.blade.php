@@ -232,10 +232,11 @@
                 class="absolute top-2 right-4 text-2xl text-pink-400 hover:text-pink-600">&times;</button>
             <h2 id="modalSongTitle" class="text-2xl font-bold text-pink-600 mb-4"></h2>
             <div id="modalSpotifyEmbed" class="mb-4"></div>
-            <button onclick="showLyrics(`{{ addslashes($dedication->song_title) }}`)"
-                class="mb-4 text-pink-500 hover:underline text-sm">
-                View Lyrics
-            </button>
+            @if (isset($dedication))
+                <button onclick="showLyrics(`{{ addslashes($dedication->song_title) }}`)" class="mb-4 text-pink-500 hover:underline text-sm">
+                    View Lyrics
+                </button>
+            @endif
             <p id="modalMessage" class="text-gray-700 leading-relaxed mb-4 whitespace-pre-line text-sm"></p>
             <audio id="popupAudio" autoplay class="mx-auto mt-2 w-full">
                 <source id="popupAudioSource" src="" type="audio/mpeg">
