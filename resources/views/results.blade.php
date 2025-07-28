@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="icon" type="image/png"
         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABuUlEQVQ4jZ3TTUhUURTG8d+ciHY2Bk1IEiJ2ZkJj0EiSNNsYuNlILGwlYWFi2/wG2Nbdt7ZopstgJZFjYWdiYgxHb1u+55zvnPOec9y6ZApLg0J9ZCzTZJb1nmEYT9TDtw7iV6WS7S8w3SntIPuE02nWGWS4T8zx7ivNPwQUkYX0CtNG4QcoU53iK14K+CRK1EDeBFlQkylYy3IRuNCEv8YUpQSiK5oNTrxCiV6QUiPQYpgWm8E3mXFYU+mSzpCtR4b3hF0sTZHr0cvw1P4XU1VGbtUCkqvKn+U0SHddTG+qVckGbttB30qvU0x0LuT6flNPR2VPL3j26P9zzLjN1zhuM2C3cOaVTu9bZZaLGlNuAtbTDPdGL7k5iKHPMFNVuNso0OnYUv2OJqHKX5Nk0l3e8AkYiAPRT9uAmSnNszXHkck00zJK+i/8Af6Z2fC2IB4NgAAAABJRU5ErkJggg==">
 
@@ -217,6 +218,8 @@
                 <p class="mt-4 text-gray-700 italic leading-relaxed">"{{ $dedication->message }}"</p>
                 <p class="text-sm text-gray-500 mt-3">— {{ $dedication->sender ?? 'Anonymous' }}</p>
 
+
+
             </div>
         @endforeach
     </div>
@@ -229,15 +232,43 @@
                 class="absolute top-2 right-4 text-2xl text-pink-400 hover:text-pink-600">&times;</button>
             <h2 id="modalSongTitle" class="text-2xl font-bold text-pink-600 mb-4"></h2>
             <div id="modalSpotifyEmbed" class="mb-4"></div>
+            <button onclick="showLyrics(`{{ addslashes($dedication->song_title) }}`)"
+                class="mb-4 text-pink-500 hover:underline text-sm">
+                View Lyrics
+            </button>
             <p id="modalMessage" class="text-gray-700 leading-relaxed mb-4 whitespace-pre-line text-sm"></p>
             <audio id="popupAudio" autoplay class="mx-auto mt-2 w-full">
                 <source id="popupAudioSource" src="" type="audio/mpeg">
             </audio>
+
+
         </div>
     </div>
 
+    <div id="lyricsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center">
+        <div
+            class="bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-6 relative shadow-xl text-left fade-zoom">
+            <button onclick="closeLyricsModal()"
+                class="absolute top-2 right-4 text-2xl text-pink-400 hover:text-pink-600">&times;</button>
+            <h2 class="text-2xl font-bold text-pink-600 mb-4 text-center">💖 Lyrics Just for You</h2>
+
+            {{-- @foreach ($lyrics as $lyric)
+                <div class="bg-pink-50 p-4 mb-4 rounded-xl shadow-sm">
+                    <h3 class="text-lg font-semibold text-pink-700">{{ $lyric->title ?? 'Untitled' }}</h3>
+                    <p class="text-sm text-gray-700 whitespace-pre-line mt-2">
+                        {{ $lyric->body ?? 'No lyrics available.' }}</p>
+
+                </div>
+            @endforeach --}}
+            <div id="lyricsContent"></div>
+        </div>
+    </div>
+
+
+
     <script>
         const modal = document.getElementById('dedicationModal');
+        const modalLyrics = document.getElementById('lyricsModal');
         const modalMessage = document.getElementById('modalMessage');
         const popupAudio = document.getElementById('popupAudio');
         const popupAudioSource = document.getElementById('popupAudioSource');
@@ -352,6 +383,42 @@
     </script>
 
     <script>
+        const lyrics = @json($lyrics);
+
+        function showLyrics(title) {
+            const matchedLyric = lyrics.find(lyric => lyric.title.toLowerCase().trim() === title.toLowerCase().trim());
+
+            const lyricsContent = document.getElementById("lyricsContent");
+            if (matchedLyric) {
+                lyricsContent.innerHTML = `
+                <div class="bg-pink-50 p-4 mb-4 rounded-xl shadow-sm">
+                    <h3 class="text-lg font-semibold text-pink-700">${matchedLyric.title}</h3>
+                    <p class="text-sm text-gray-700 whitespace-pre-line mt-2">${matchedLyric.body}</p>
+                </div>
+            `;
+            } else {
+                lyricsContent.innerHTML = `
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600">Lyrics not available for this song.</p>
+                </div>
+            `;
+            }
+
+            document.getElementById("lyricsModal").classList.remove("hidden");
+            document.getElementById("lyricsModal").classList.add("flex");
+        }
+
+        function closeLyricsModal() {
+            document.getElementById("lyricsModal").classList.add("hidden");
+            modalLyrics.classList.add("hidden");
+            modalLyrics.classList.remove("flex");
+        }
+        modalLyrics.addEventListener('click', function(e) {
+            if (e.target === modalLyrics) closeLyricsModal();
+        });
+    </script>
+
+    <script>
         const messages = [
             "I miss you🌸",
             "Thinking of you💕",
@@ -368,7 +435,7 @@
 
         document.addEventListener("click", function(e) {
             const flowerImg = document.createElement("img");
-            flowerImg.src = "/images/me.png"; 
+            flowerImg.src = "/images/me.png";
             flowerImg.style.position = "absolute";
             flowerImg.style.left = e.pageX + "px";
             flowerImg.style.top = e.pageY + "px";
@@ -412,6 +479,55 @@
     `;
         document.head.appendChild(style);
     </script>
+
+    {{-- <script>
+        const allLyrics = @json($lyrics);
+
+        function openDedicationModal(songTitle, message, audioUrl) {
+            document.getElementById('modalSongTitle').innerText = songTitle;
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('popupAudioSource').src = audioUrl;
+            document.getElementById('popupAudio').load();
+
+            const lyricsContainer = document.getElementById('lyricsButtonContainer');
+            lyricsContainer.innerHTML = '';
+
+            const matchedLyric = allLyrics.find(lyric => lyric.title === songTitle);
+
+            if (matchedLyric) {
+                const button = document.createElement('button');
+                button.innerText = 'View Lyrics';
+                button.className = 'inline-block mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600';
+                button.onclick = () => {
+                    window.location.href = `/lyrics/${matchedLyric.id}`;
+                };
+                lyricsContainer.appendChild(button);
+
+            } else {
+                const noLyrics = document.createElement('p');
+                noLyrics.className = 'mt-2 text-sm text-red-500';
+                noLyrics.innerText = 'No lyrics available';
+                lyricsContainer.appendChild(noLyrics);
+            }
+
+
+            document.getElementById('dedicationModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('dedicationModal').classList.add('hidden');
+            document.getElementById('popupAudio').pause();
+        }
+
+        function closeLyricsModal() {
+            document.getElementById('lyricsModal').classList.add('hidden');
+        }
+    </script> --}}
+
+    <script>
+        const lyrics = @json($lyrics);
+    </script>
+
 
 </body>
 

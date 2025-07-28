@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Dedication;
+use App\Models\Lyric;
 
 class DedicationController extends Controller
 {
@@ -67,6 +69,8 @@ class DedicationController extends Controller
             $dedications = Dedication::whereRaw('LOWER(recipient) = ?', [strtolower(trim($recipient))])->get();
         }
 
-        return view('results', compact('dedications'));
+        $lyrics = Lyric::latest()->get(); 
+
+        return view('results', compact('dedications', 'lyrics')); 
     }
 }
